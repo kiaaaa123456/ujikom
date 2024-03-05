@@ -55,7 +55,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>DATA JENIS</h3>
+                        <h3>DATA PRODUCT</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -73,7 +73,7 @@
                     <div class="card-header">
                         <div class="row justify-content-between align-items-center">
                             <div class="col">
-                                <h4 class="card-title">Data Jenis</h4>
+                                <h4 class="card-title">Data Produk Titipan</h4>
                             </div>
 
                         </div>
@@ -99,26 +99,25 @@
                             </div>
                         @endif
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modalFormJenis">
+                            data-bs-target="#modalFormProduct">
                             <i class="bi bi-plus"></i>Tambah
                         </button>
-                        <a href="{{ url('pdfjenis') }}" target="_blank" class="btn btn-danger">
+                        <a href="{{ url('pdfproduct') }}" target="_blank" class="btn btn-danger">
                             <i class="bi bi-file-pdf"></i>PDF
                         </a>
-                        <a href="{{ route('exportjenis') }}" class="btn btn-success">
+                        <a href="{{ route('exportproduct') }}" class="btn btn-success">
                             <i class="bi bi-file-excel"></i>Export
                         </a>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#formImport">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formImport">
                             <i class="bi bi-cloud-upload"></i>Import
                         </button>
 
                         <div class="mt-3">
-                            @include('jenis.data')
+                            @include('product.data')
                         </div>
                     </div>
                 </div>
-                @include('jenis.form')
+                @include('product.form')
             </section>
         @endsection
 
@@ -149,25 +148,52 @@
                         else swal.close()
                     })
                 })
-                $('#modalFormJenis').on('show.bs.modal', function(e) {
-                    const btn = $(e.relatedTarget)
-                    console.log(btn.data('mode'))
-                    const mode = btn.data('mode')
-                    const nama_jenis = btn.data('nama_jenis')
-                    const id = btn.data('id')
-                    const modal = $(this)
-                    // console.log($(this))
-                    if (mode === 'edit') {
-                        modal.find('.modal-title').text('Edit Data jenis')
-                        modal.find('#nama_jenis').val(nama_jenis)
-                        modal.find('.modal-body form').attr('action', '{{ url('jenis') }}/' + id)
-                        modal.find('#method').html('@method('PATCH')')
-                    } else {
-                        modal.find('.modal-title').text('Input Data jenis')
-                        modal.find('#nama_jenis').val('')
-                        modal.find('#method').html('')
-                        modal.find('.modal-body form').attr('action', '{{ url('jenis') }}')
-                    }
-                })
+
+
+                $(document).ready(function() {
+                    // Fungsi untuk menghitung harga jual otomatis saat input harga beli diubah
+                    $('#harga_beli').on('input', function() {
+                        var hargaBeli = $(this).val();
+                        var keuntungan = hargaBeli * 1.7;
+                        var hargaJual = Math.ceil(keuntungan / 500) * 500;
+                        $('#harga_jual').val(hargaJual);
+                    });
+
+                    // Fungsi untuk menangani logika modal
+                    $('#modalFormProduct').on('show.bs.modal', function(e) {
+                        const btn = $(e.relatedTarget);
+                        const mode = btn.data('mode');
+                        const nama_produk = btn.data('nama_produk');
+                        const nama_suplier = btn.data('nama_suplier');
+                        const harga_beli = btn.data('harga_beli');
+                        const harga_jual = btn.data('harga_jual');
+                        const stok = btn.data('stok');
+                        const keterangan = btn.data('keterangan');
+                        const id = btn.data('id');
+                        const modal = $(this);
+
+                        if (mode === 'edit') {
+                            modal.find('.modal-title').text('Edit Data Product');
+                            modal.find('#nama_produk').val(nama_produk);
+                            modal.find('#nama_suplier').val(nama_suplier);
+                            modal.find('#harga_beli').val(harga_beli);
+                            modal.find('#harga_jual').val(harga_jual);
+                            modal.find('#stok').val(stok);
+                            modal.find('#keterangan').val(keterangan);
+                            modal.find('.modal-body form').attr('action', '{{ url('produk-titipan') }}/' + id);
+                            modal.find('#method').html('@method('PATCH')');
+                        } else {
+                            modal.find('.modal-title').text('Input Data Product');
+                            modal.find('#nama_produk').val('');
+                            modal.find('#nama_suplier').val('');
+                            modal.find('#harga_beli').val('');
+                            modal.find('#harga_jual').val('');
+                            modal.find('#stok').val('');
+                            modal.find('#keterangan').val('');
+                            modal.find('#method').html('');
+                            modal.find('.modal-body form').attr('action', '{{ url('produk-titipan') }}');
+                        }
+                    });
+                });
             </script>
         @endpush

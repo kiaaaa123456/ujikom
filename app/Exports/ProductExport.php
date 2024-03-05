@@ -2,27 +2,32 @@
 
 namespace App\Exports;
 
-use App\Models\Jenis;
+use App\Models\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\AfterSheet;
-use PhpOffice\PhpSpreadsheet\Style\Border;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
-use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
-class JenisExport implements FromCollection, WithHeadings, WithEvents
+class ProductExport implements FromCollection, WithHeadings, WithEvents
 {
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        return Jenis::all();
+        return Product::all();
     }
 
     public function headings(): array
     {
         return [
             'No.',
-            'Nama Jenis',
+            'Nama Product',
+            'Nama Supplier',
+            'Harga Beli',
+            'Harga Jual',
+            'Stok',
+            'Keterangan',
             'Created_at',
             'Update_at',
         ];
@@ -36,14 +41,19 @@ class JenisExport implements FromCollection, WithHeadings, WithEvents
                 $event->sheet->getColumnDimension('B')->setAutoSize(true);
                 $event->sheet->getColumnDimension('C')->setAutoSize(true);
                 $event->sheet->getColumnDimension('D')->setAutoSize(true);
+                $event->sheet->getColumnDimension('E')->setAutoSize(true);
+                $event->sheet->getColumnDimension('F')->setAutoSize(true);
+                $event->sheet->getColumnDimension('G')->setAutoSize(true);
+                $event->sheet->getColumnDimension('H')->setAutoSize(true);
+                $event->sheet->getColumnDimension('I')->setAutoSize(true);
 
                 $event->sheet->insertNewRowBefore(1, 2);
-                $event->sheet->mergeCells('A1:D1');
-                $event->sheet->setCellValue('A1', 'DATA JENIS');
+                $event->sheet->mergeCells('A1:I1');
+                $event->sheet->setCellValue('A1', 'DATA PRODUCT TITIPAN');
                 $event->sheet->getStyle('A1')->getFont()->setBold(true);
                 $event->sheet->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-                $event->sheet->getStyle('A3:D' . $event->sheet->getHighestRow())->applyFromArray([
+                $event->sheet->getStyle('A3:I' . $event->sheet->getHighestRow())->applyFromArray([
                     'borders' => [
                         'allBorders' => [
                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,

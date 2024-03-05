@@ -95,9 +95,18 @@
                                         <a href="{{ url('stok') }}">Stok</a>
                                     </li>
                                     <li class="submenu-item ">
+                                        <a href="{{ url('produk-titipan') }}">Produk Titipan</a>
+                                    </li>
+                                    <li class="submenu-item ">
                                         <a href="{{ url('pelanggan') }}">Pelanggan</a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="sidebar-item ">
+                                <a href="{{ url('tentang-aplikasi') }}" class='sidebar-link'>
+                                    <i class="bi bi-info"></i>
+                                    <span>Tentang Aplikasi</span>
+                                </a>
                             </li>
                         @endif
                         @if (Auth::user()->level == 2)

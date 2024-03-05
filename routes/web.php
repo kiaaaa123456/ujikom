@@ -7,6 +7,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PemasokController;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\TransaksiController;
@@ -30,6 +31,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/pelanggan', PelangganController::class);
         Route::resource('/menu', MenuController::class);
         Route::resource('/stok', StokController::class);
+        Route::get('tentang-aplikasi', [HomeController::class, 'tentangAplikasi']);
+        Route::resource('/produk-titipan', ProductController::class);
+        Route::get('pdfproduct', [ProductController::class, 'productPdf'])->name('pdfproduct');
+        Route::get('exportproduct', [ProductController::class, 'productExport'])->name('exportproduct');
+        Route::post('produk-titipan/import', [ProductController::class, 'importData'])->name('import-produk-titipan');
+        Route::post('produk-titipan/{id}/update-stok', 'ProductController@updateStock');
     });
 
     Route::group(['middleware' => ['cekUserLogin:2']], function () {

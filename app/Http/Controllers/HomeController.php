@@ -9,4 +9,8 @@ class HomeController extends Controller
     public function index(){
         return view('dashboard.index');
     }
+    public function tentangAplikasi()
+    {
+        return view('dashboard.tentang');
+    }
 }

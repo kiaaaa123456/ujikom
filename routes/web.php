@@ -5,10 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\jenisController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\PemasokController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
@@ -36,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('pdfproduct', [ProductController::class, 'productPdf'])->name('pdfproduct');
         Route::get('exportproduct', [ProductController::class, 'productExport'])->name('exportproduct');
         Route::post('produk-titipan/import', [ProductController::class, 'importData'])->name('import-produk-titipan');
-        Route::post('produk-titipan/{id}/update-stok', 'ProductController@updateStock');
+        Route::post('/produk-titipan/{id}/update-stok', [ProductController::class, 'updateStok'])->name('produk-titipan.update-stok');
     });
 
     Route::group(['middleware' => ['cekUserLogin:2']], function () {

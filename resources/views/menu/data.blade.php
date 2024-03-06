@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         @foreach ($menu as $p)
-            <tr>
+        <tr>
                 <td>{{ $i = !isset($i) ? ($i = 1) : ++$i }}</td>
                 <td>{{ $p->jenis->nama_jenis }}</td>
                 <td>{{ $p->nama_menu }}</td>

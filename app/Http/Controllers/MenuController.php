@@ -35,7 +35,6 @@ class MenuController extends Controller
         $request->validate([
             'image' => 'required | image | mimes:png,jpg,jpeg,svg|max:2048',
         ]);
-
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $imageName);
         $data = $request->all();

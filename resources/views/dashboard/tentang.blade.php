@@ -164,5 +164,14 @@
         document.querySelector('.burger-btn').addEventListener('click', function() {
             document.querySelector('.menu-sidebar').classList.toggle('show');
         });
+
+        // Script untuk menangani klik tombol kembali ke atas
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah aksi default dari link
+            window.scrollTo({
+                top: 0, // Gulir ke atas halaman
+                behavior: 'smooth' // Gulir halus
+            });
+        });
     </script>
 @endpush

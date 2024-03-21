@@ -10,7 +10,6 @@
                     <a href="#" class="burger-btn d-block">
                         <i class="bi bi-justify fs-3"></i>
                     </a>
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -101,6 +100,15 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modalFormMenu">
                             <i class="bi bi-plus"></i>Tambah
+                        </button>
+                        {{-- <a href="{{ url('pdfmenu') }}" target="_blank" class="btn btn-danger">
+                            <i class="bi bi-file-pdf"></i>PDF
+                        </a> --}}
+                        {{-- <a href="{{ route('exportmenu') }}" class="btn btn-success">
+                            <i class="bi bi-file-excel"></i>Export
+                        </a> --}}
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formImport">
+                            <i class="bi bi-cloud-upload"></i>Import
                         </button>
                         <div class="mt-3">
                             @include('menu.data')

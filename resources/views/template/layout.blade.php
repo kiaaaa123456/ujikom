@@ -16,10 +16,9 @@
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="{{ asset('sweetalert') }}/sweetalert2.min.css">
     <!-- DataTables CSS -->
-    <link rel="stylesheet"
-        href="{{ asset('mazer') }}/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
-    <!-- Custom Page CSS -->
-    <link rel="stylesheet" href="{{ asset('mazer') }}/assets/css/pages/datatables.css">
+    <link rel="stylesheet" href="{{  asset('mazer')}}/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{  asset('mazer')}}/assets/css/pages/datatables.css">
+
     @stack('style')
 </head>
 

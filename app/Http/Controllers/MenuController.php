@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MenuExport;
 use App\Models\Menu;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
+use App\Imports\MenuImport;
 use App\Models\Jenis;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -45,6 +50,27 @@ class MenuController extends Controller
         return redirect('menu')->with('success', 'Data Menu berhasil di tambahkan!');
 
         return back()->with('success' . 'You have successfully uploaded ann image.')->with('images', $imageName);
+    }
+
+    public function menuPdf()
+    {
+        $date = date('Y-m-d');
+        $menu = Menu::all();
+        $pdf = PDF::loadView('menu.data', compact('menu'));
+        return $pdf->download($date, '_menu.pdf');
+    }
+
+    // public function menuExport()
+    // {
+    //     $date = date('Y-m-d');
+    //     return Excel::download(new MenuExport, $date . '_menu.xlsx');
+    // }
+
+    public function importData(Request $request)
+    {
+
+        Excel::import(new MenuImport, $request->import);
+        return redirect()->back()->with('success', 'Import data Menu berhasil');
     }
 
     /**

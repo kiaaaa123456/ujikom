@@ -2,17 +2,17 @@
 
 namespace App\Exports;
 
-use App\Models\Jenis;
+use App\Models\Menu;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class JenisExport implements FromCollection, WithHeadings, WithEvents
+class MenuExport implements FromCollection, WithHeadings, WithEvents
 {
     public function collection()
     {
-        return Jenis::all();
+        return Menu::all();
     }
 
     public function headings(): array
@@ -20,6 +20,10 @@ class JenisExport implements FromCollection, WithHeadings, WithEvents
         return [
             'No.',
             'Nama Jenis',
+            'Nama Menu',
+            'Harga',
+            'Image',
+            'Deskripsi',
             'Created_at',
             'Update_at',
         ];
@@ -33,14 +37,18 @@ class JenisExport implements FromCollection, WithHeadings, WithEvents
                 $event->sheet->getColumnDimension('B')->setAutoSize(true);
                 $event->sheet->getColumnDimension('C')->setAutoSize(true);
                 $event->sheet->getColumnDimension('D')->setAutoSize(true);
+                $event->sheet->getColumnDimension('E')->setAutoSize(true);
+                $event->sheet->getColumnDimension('F')->setAutoSize(true);
+                $event->sheet->getColumnDimension('G')->setAutoSize(true);
+                $event->sheet->getColumnDimension('H')->setAutoSize(true);
 
                 $event->sheet->insertNewRowBefore(1, 2);
-                $event->sheet->mergeCells('A1:D1');
-                $event->sheet->setCellValue('A1', 'DATA JENIS');
+                $event->sheet->mergeCells('A1:H1');
+                $event->sheet->setCellValue('A1', 'DATA MENU');
                 $event->sheet->getStyle('A1')->getFont()->setBold(true);
                 $event->sheet->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-                $event->sheet->getStyle('A3:D' . $event->sheet->getHighestRow())->applyFromArray([
+                $event->sheet->getStyle('A3:H' . $event->sheet->getHighestRow())->applyFromArray([
                     'borders' => [
                         'allBorders' => [
                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,

@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('jenis/import', [jenisController::class, 'importData'])->name('import-jenis');
         Route::resource('/pelanggan', PelangganController::class);
         Route::resource('/menu', MenuController::class);
+        // Route::get('exportmenu', [MenuController::class, 'menuExport'])->name('exportmenu');
+        Route::get('pdfmenu', [MenuController::class, 'menuPdf'])->name('pdfmenu');
+        Route::post('menu/import', [MenuController::class, 'importData'])->name('import-menu');
         Route::resource('/stok', StokController::class);
         Route::get('tentang-aplikasi', [HomeController::class, 'tentangAplikasi']);
         Route::resource('/produk-titipan', ProductController::class);

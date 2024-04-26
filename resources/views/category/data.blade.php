@@ -1,38 +1,3 @@
-<style>
-    /* Tabel */
-    #tbl-category {
-        background-color: #f8f9fa;
-        /* Warna latar belakang */
-        border-color: #000000;
-        /* Warna garis tepi */
-    }
-
-    /* Warna latar belakang baris ganjil */
-    #tbl-category tbody tr:nth-child(odd) {
-        background-color: #ffffff;
-        /* Warna latar belakang untuk baris ganjil */
-    }
-
-    /* Warna latar belakang baris genap */
-    #tbl-category tbody tr:nth-child(even) {
-        background-color: #f0f0f0;
-        /* Warna latar belakang untuk baris genap */
-    }
-
-    /* Warna teks pada header tabel */
-    #tbl-category thead th {
-        color: #030303;
-        background-color: #f5f53c;
-    }
-
-    /* Gaya tombol Edit */
-    .edit-btn {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
-</style>
-
 <table id="tbl-category" class="table table-bordered">
     <thead>
         <tr>

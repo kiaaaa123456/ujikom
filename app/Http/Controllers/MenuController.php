@@ -10,7 +10,10 @@ use App\Imports\MenuImport;
 use App\Models\Jenis;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\PDF;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View as FacadesView;
+use Illuminate\Support\Facades\View;
 
 class MenuController extends Controller
 {
@@ -54,17 +57,32 @@ class MenuController extends Controller
 
     public function menuPdf()
     {
-        $date = date('Y-m-d');
+        // Get data
         $menu = Menu::all();
-        $pdf = PDF::loadView('menu.data', compact('menu'));
-        return $pdf->download($date, '_menu.pdf');
+
+        // Loop through menu items and encode images to base64
+        foreach ($menu as $p) {
+            $imagePath = public_path('images/' . $p->image);
+            $imageData = base64_encode(file_get_contents($imagePath));
+            $p->imageData = $imageData;
+        }
+
+        // Generate PDF
+        $dompdf = new Dompdf();
+        $html = View::make('menu.menu-pdf', compact('menu'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        // Return the PDF as a download
+        return $dompdf->stream('menu.pdf');
     }
 
-    // public function menuExport()
-    // {
-    //     $date = date('Y-m-d');
-    //     return Excel::download(new MenuExport, $date . '_menu.xlsx');
-    // }
+
+    public function menuExport()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new MenuExport,   '_menu.xlsx');
+    }
 
     public function importData(Request $request)
     {

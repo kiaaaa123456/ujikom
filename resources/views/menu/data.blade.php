@@ -17,7 +17,11 @@
                 <td>{{ $p->jenis->nama_jenis }}</td>
                 <td>{{ $p->nama_menu }}</td>
                 <td>{{ $p->harga }}</td>
-                <td><img width="70px" src="{{ asset('images') }}/{{ $p->image }}" alt="" srcset=""></td>
+                @if (request()->route()->getActionMethod() == 'menuPdf')
+                    <td><img width="70px" src="data:image/jpeg;base64,{{ $p->imageData }}" alt=""></td>
+                @else
+                    <td><img width="70px" src="{{ asset('images/' . $p->image) }}" alt=""></td>
+                @endif
                 <td>{{ $p->deskripsi }}</td>
                 <td class="text-center">
                     <button class="btn" data-bs-toggle="modal" data-bs-target="#modalFormMenu" data-mode="edit"

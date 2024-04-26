@@ -101,12 +101,12 @@
                             data-bs-target="#modalFormMenu">
                             <i class="bi bi-plus"></i>Tambah
                         </button>
-                        {{-- <a href="{{ url('pdfmenu') }}" target="_blank" class="btn btn-danger">
+                        <a href="{{ url('pdfmenu') }}" target="_blank" class="btn btn-danger">
                             <i class="bi bi-file-pdf"></i>PDF
-                        </a> --}}
-                        {{-- <a href="{{ route('exportmenu') }}" class="btn btn-success">
+                        </a>
+                        <a href="{{ route('exportmenu') }}" class="btn btn-success">
                             <i class="bi bi-file-excel"></i>Export
-                        </a> --}}
+                        </a>
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formImport">
                             <i class="bi bi-cloud-upload"></i>Import
                         </button>
@@ -115,6 +115,7 @@
                         </div>
                     </div>
                 </div>
+                @include('menu.modal')
                 @include('menu.form')
             </section>
         @endsection

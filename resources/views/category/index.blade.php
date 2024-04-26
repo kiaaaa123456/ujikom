@@ -103,6 +103,15 @@
                             data-bs-target="#modalFormCategory">
                             <i class="bi bi-plus"></i>Tambah
                         </button>
+                        <a href="{{ url('pdfcategory') }}" target="_blank" class="btn btn-danger">
+                            <i class="bi bi-file-pdf"></i>PDF
+                        </a>
+                        <a href="{{ route('exportcategory') }}" class="btn btn-success">
+                            <i class="bi bi-file-excel"></i>Export
+                        </a>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formImport">
+                            <i class="bi bi-cloud-upload"></i>Import
+                        </button>
                         <div class="mt-3">
                             @include('category.data')
                         </div>

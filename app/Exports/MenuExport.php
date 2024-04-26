@@ -19,7 +19,7 @@ class MenuExport implements FromCollection, WithHeadings, WithEvents
     {
         return [
             'No.',
-            'Nama Jenis',
+            'Jenis ID',
             'Nama Menu',
             'Harga',
             'Image',

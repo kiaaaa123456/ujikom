@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailTransaksi;
 use App\Http\Requests\StoreDetailTransaksiRequest;
 use App\Http\Requests\UpdateDetailTransaksiRequest;
+use App\Models\Transaksi;
 
 class DetailTransaksiController extends Controller
 {
@@ -13,7 +14,8 @@ class DetailTransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $data['transaksi'] = Transaksi::with(['detailTransaksi'])->get();
+        return view('laporan.index')->with($data);
     }
 
     /**

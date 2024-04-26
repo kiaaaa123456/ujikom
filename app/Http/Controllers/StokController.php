@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StokExport;
 use App\Models\Menu;
 use App\Http\Requests\StoreStokRequest;
 use App\Http\Requests\UpdateStokRequest;
@@ -10,6 +11,9 @@ use App\Models\Jenis;
 use Exception;
 use Illuminate\Database\QueryException;
 use PDOException;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Http\Request;
 
 class StokController extends Controller
 {
@@ -48,6 +52,21 @@ class StokController extends Controller
         }
     }
 
+
+    public function stokPdf()
+    {
+        $date = date('Y-m-d');
+        $data = Stok::all();
+        $pdf = PDF::loadView('stok/stok-pdf', ['stok' => $data]);
+        return $pdf->download($date . '_stok.pdf');
+    }
+
+    public function stokExport()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new StokExport, $date . '_stok.xlsx');
+    }
+
     /**
      * Display the specified resource.
      */
@@ -79,6 +98,6 @@ class StokController extends Controller
     public function destroy($id)
     {
         Stok::find($id)->delete();
-        return redirect('menu')->with('success', 'Data menu berhasil dihapus!');
+        return redirect('stok')->with('success', 'Data stok berhasil dihapus!');
     }
 }

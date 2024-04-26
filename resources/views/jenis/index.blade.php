@@ -108,8 +108,7 @@
                         <a href="{{ route('exportjenis') }}" class="btn btn-success">
                             <i class="bi bi-file-excel"></i>Export
                         </a>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#formImport">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formImport">
                             <i class="bi bi-cloud-upload"></i>Import
                         </button>
 

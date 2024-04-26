@@ -13,4 +13,8 @@ class HomeController extends Controller
     {
         return view('dashboard.tentang');
     }
+    public function contactUs()
+    {
+        return view('dashboard.contact');
+    }
 }

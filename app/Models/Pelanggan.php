@@ -10,6 +10,5 @@ class Pelanggan extends Model
     use HasFactory;
 
     protected $table = 'pelanggan';
-
     protected $guarded = [''];
 }

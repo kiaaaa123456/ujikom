@@ -3,23 +3,28 @@
 namespace App\Imports;
 
 use App\Models\Menu;
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class MenuImport implements ToCollection, WithHeadingRow
+class MenuImport implements ToModel, WithHeadingRow
 {
-    public function collection(Collection $rows)
+    /**
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function model(array $row)
     {
-        foreach ($rows as $row) {
-            Menu::create([
-                'jenis_id' => $row['jenis_id'],
-                'nama_menu' => $row['nama_menu'],
-                'jenis_id' => $row['jenis_id'],
-                'jenis_id' => $row['jenis_id'],
-                'jenis_id' => $row['jenis_id'],
-                'jenis_id' => $row['jenis_id'],
-            ]);
-        }
+        return new Menu([
+            'jenis_id' => $row["jenis_id"],
+            'nama_menu' => $row["nama_menu"],
+            'harga' => $row["harga"],
+            'image' => $row["image"],
+            'deskripsi' => $row["deskripsi"],
+        ]);
+    }
+    public function headingRow()
+    {
+        return 3;
     }
 }

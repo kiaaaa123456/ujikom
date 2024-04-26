@@ -1,4 +1,4 @@
-<table id="tbl-jenis" class="table table-bordered">
+{{-- <table id="tbl-jenis" class="table table-bordered">
     <thead>
         <tr>
             <th>No.</th>
@@ -137,4 +137,4 @@
             }
         });
     </script>
-@endpush
+@endpush --}}

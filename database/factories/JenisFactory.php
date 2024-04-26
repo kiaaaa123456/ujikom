@@ -17,7 +17,7 @@ class JenisFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama_jenis' => fake()->randomElement(['Makanan', 'Minuman']),
         ];
     }
 }

@@ -10,12 +10,12 @@
                 @csrf
                 <div class="container">
                     <div class="item">
-                        <select id="jenis-filter" class="col-md-12 mb-2">
+                        {{-- <select id="jenis-filter" class="col-md-12 mb-2">
                             <option value="">Semua Jenis</option>
                             @foreach ($jenis as $j)
                                 <option value="{{ $j->id }}">{{ $j->nama_jenis }}</option>
                             @endforeach
-                        </select>
+                        </select> --}}
                         <ul class="menu-container">
                             @foreach ($jenis as $j)
                                 <li class="jenis-menu" data-jenis="{{ $j->id }}">
@@ -114,15 +114,6 @@
                 $('#total').html(sum());
             });
 
-            $('#jenis-filter').on('change', function() {
-                const selectedJenis = $(this).val();
-                if (selectedJenis) {
-                    $('.jenis-menu').hide(); // sembunyikan semua jenis makanan
-                    $(`.jenis-menu[data-jenis="${selectedJenis}"]`).show(); // tampilkan jenis yang dipilih
-                } else {
-                    $('.jenis-menu').show(); // jika pilihan kosong, tampilkan semua jenis makanan
-                }
-            });
 
 
             $('#btn-bayar').on('click', function() {

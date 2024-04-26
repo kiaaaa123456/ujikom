@@ -15,9 +15,11 @@
     <link rel="stylesheet" href="{{ asset('bootstrap5.3') }}/css/bootstrap.min.css">
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="{{ asset('sweetalert') }}/sweetalert2.min.css">
+    <script src="{{ asset('mazer') }}/assets/extensions/apexcharts/apexcharts.css"></script>
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="{{  asset('mazer')}}/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="{{  asset('mazer')}}/assets/css/pages/datatables.css">
+    <link rel="stylesheet"
+        href="{{ asset('mazer') }}/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('mazer') }}/assets/css/pages/datatables.css">
 
     @stack('style')
 </head>
@@ -85,7 +87,13 @@
                                 </a>
                                 <ul class="submenu ">
                                     <li class="submenu-item ">
+                                        <a href="{{ url('category') }}">Category</a>
+                                    </li>
+                                    <li class="submenu-item ">
                                         <a href="{{ url('jenis') }}">Jenis</a>
+                                    </li>
+                                    <li class="submenu-item ">
+                                        <a href="{{ url('meja') }}">Meja</a>
                                     </li>
                                     <li class="submenu-item ">
                                         <a href="{{ url('menu') }}">Menu</a>
@@ -97,14 +105,21 @@
                                         <a href="{{ url('produk-titipan') }}">Produk Titipan</a>
                                     </li>
                                     <li class="submenu-item ">
+                                        <a href="{{ url('absensi') }}">Absensi</a>
+                                    </li>
+                                    <li class="submenu-item ">
                                         <a href="{{ url('pelanggan') }}">Pelanggan</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="sidebar-item ">
                                 <a href="{{ url('tentang-aplikasi') }}" class='sidebar-link'>
-                                    <i class="bi bi-info"></i>
+                                    <i class="bi bi-info-square"></i>
                                     <span>Tentang Aplikasi</span>
+                                </a>
+                                <a href="{{ url('contactUs') }}" class="sidebar-link">
+                                    <i class="bi bi-info-circle"></i> <!-- Icon Contact Us -->
+                                    <span>Contact Us</span>
                                 </a>
                             </li>
                         @endif
@@ -117,6 +132,19 @@
                                 <ul class="submenu ">
                                     <li class="submenu-item ">
                                         <a href="{{ url('pemesanan') }}">Pemesanan</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        @if (Auth::user()->level == 3)
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i class="bi bi-stack"></i>
+                                    <span>Owner</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li class="submenu-item ">
+                                        <a href="{{ url('laporan') }}">Laporan</a>
                                     </li>
                                 </ul>
                             </li>

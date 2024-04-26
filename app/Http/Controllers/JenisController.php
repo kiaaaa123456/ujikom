@@ -53,7 +53,7 @@ class jenisController extends Controller
     {
         $date = date('Y-m-d');
         $data = Jenis::all();
-        $pdf = PDF::loadView('jenis.data', ['jenis' => $data]);
+        $pdf = PDF::loadView('jenis/jenis-pdf', ['jenis' => $data]);
         return $pdf->download($date . '_jenis.pdf');
     }
 

@@ -9,8 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ url(request()->segment(1) . '/import/jenis') }}"
-                    enctype="multipart/form-data">
+                <form method="POST" action="{{ route('import-jenis') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">

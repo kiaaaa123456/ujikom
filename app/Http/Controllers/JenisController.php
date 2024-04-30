@@ -59,10 +59,10 @@ class jenisController extends Controller
 
     public function importData(Request $request)
     {
-        
-        Excel::import(new jenisImport, $request->import);
-        return redirect()->back()->with('success', 'Import data jenis berhasil');
+        Excel::import(new JenisImport, $request->import);
+        return redirect()->back()->with('success', 'Import data Absensi berhasil');
     }
+
 
     /**
      * Display the specified resource.

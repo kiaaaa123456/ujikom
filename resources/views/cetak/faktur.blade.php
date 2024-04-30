@@ -37,7 +37,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe Indomart</title>
+    <title>P O I N T COFFEE</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -88,8 +88,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Cafe Indomart</h2>
-            <h5>Jalan jalan</h5>
+            <h2><i>POINT COFFEE</i></h2>
+            <h5>Jalan Pangeran Hidayatullah</h5>
             <hr>
             <h5>No. Faktur : {{ $transaksi->id }}</h5>
             <h5>{{ $transaksi->tanggal }}</h5>

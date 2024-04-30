@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Mazer Admin Dashboard</title>
+    <title>Login - CAFE</title>
     <link rel="stylesheet" href="{{ asset('mazer') }}/assets/css/main/app.css">
     <link rel="stylesheet" href="{{ asset('mazer') }}/assets/css/pages/auth.css">
     <link rel="shortcut icon" href="{{ asset('mazer') }}/assets/images/logo/favicon.svg" type="image/x-icon">
@@ -17,10 +17,6 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="auth-logo">
-                        <a href="index.html"><img src="{{ asset('mazer') }}/assets/images/logo/logo.svg"
-                                alt="Logo"></a>
-                    </div>
                     <h1 class="auth-title">Log in.</h1>
                     <form action="{{ route('cekLogin') }}" method="POST" novalidate>
                         @csrf
@@ -48,9 +44,11 @@
                                         @error('password')
                                         is-invalid
                                         @enderror
-                                        placeholder="Password" name="password" value="{{ old('password') }}">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-lock"></i>
+                                        placeholder="Password" name="password" value="{{ old('password') }}"
+                                        id="password">
+                                    <div class="form-control-icon" id="togglePassword" style="cursor: pointer;">
+                                        <i class="bi bi-eye"></i>
+                                        <i class="bi bi-eye-slash d-none"></i>
                                     </div>
                                 </div>
                             </div>
@@ -80,6 +78,22 @@
         </div>
 
     </div>
+
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        const showPasswordIcon = togglePassword.querySelector('.bi-eye');
+        const hidePasswordIcon = togglePassword.querySelector('.bi-eye-slash');
+
+        togglePassword.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye icons
+            showPasswordIcon.classList.toggle('d-none');
+            hidePasswordIcon.classList.toggle('d-none');
+        });
+    </script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Dashboard - P O I N T COFFEE</title>
 
     <link rel="stylesheet" href="{{ asset('mazer') }}/assets/css/main/app.css">
     <link rel="stylesheet" href="{{ asset('mazer') }}/assets/css/main/app-dark.css">
@@ -20,6 +20,10 @@
     <link rel="stylesheet"
         href="{{ asset('mazer') }}/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{ asset('mazer') }}/assets/css/pages/datatables.css">
+    <!-- Custom Font Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 
     @stack('style')
 </head>
@@ -86,15 +90,15 @@
                                     <span>Admin</span>
                                 </a>
                                 <ul class="submenu ">
-                                    <li class="submenu-item ">
+                                    {{-- <li class="submenu-item ">
                                         <a href="{{ url('category') }}">Category</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="submenu-item ">
                                         <a href="{{ url('jenis') }}">Jenis</a>
                                     </li>
-                                    <li class="submenu-item ">
+                                    {{-- <li class="submenu-item ">
                                         <a href="{{ url('meja') }}">Meja</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="submenu-item ">
                                         <a href="{{ url('menu') }}">Menu</a>
                                     </li>
@@ -102,25 +106,9 @@
                                         <a href="{{ url('stok') }}">Stok</a>
                                     </li>
                                     <li class="submenu-item ">
-                                        <a href="{{ url('produk-titipan') }}">Produk Titipan</a>
-                                    </li>
-                                    <li class="submenu-item ">
-                                        <a href="{{ url('absensi') }}">Absensi</a>
-                                    </li>
-                                    <li class="submenu-item ">
                                         <a href="{{ url('pelanggan') }}">Pelanggan</a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="sidebar-item ">
-                                <a href="{{ url('tentang-aplikasi') }}" class='sidebar-link'>
-                                    <i class="bi bi-info-square"></i>
-                                    <span>Tentang Aplikasi</span>
-                                </a>
-                                <a href="{{ url('contactUs') }}" class="sidebar-link">
-                                    <i class="bi bi-info-circle"></i> <!-- Icon Contact Us -->
-                                    <span>Contact Us</span>
-                                </a>
                             </li>
                         @endif
                         @if (Auth::user()->level == 2)
@@ -137,6 +125,12 @@
                             </li>
                         @endif
                         @if (Auth::user()->level == 3)
+                            <li class="sidebar-item ">
+                                <a href="{{ url('/') }}" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
                             <li class="sidebar-item  has-sub">
                                 <a href="#" class='sidebar-link'>
                                     <i class="bi bi-stack"></i>

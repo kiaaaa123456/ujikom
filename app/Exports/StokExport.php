@@ -19,8 +19,8 @@ class StokExport implements FromCollection, WithHeadings, WithEvents
     {
         return [
             'No.',
-            'Nama Menu',
-            'Jumlah',
+            'menu_id',
+            'jumlah',
             'Created_at',
             'Update_at',
         ];

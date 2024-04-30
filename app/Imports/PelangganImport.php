@@ -3,21 +3,22 @@
 namespace App\Imports;
 
 use App\Models\Pelanggan;
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class PelangganImport implements ToCollection, WithHeadingRow
+class PelangganImport implements ToModel, WithHeadingRow
 {
-    public function collection(Collection $rows)
+    public function headingRow()
     {
-        foreach ($rows as $row) {
-            Pelanggan::create([
-                'nama' => $row['nama'],
-                'alamat' => $row['alamat'],
-                'no_telp' => $row['no_telp'],
-                'email' => $row['email'],
-            ]);
-        }
+        return 3;
+    }
+    public function model(array $rows)
+    {
+        return new Pelanggan([
+            'nama' => $rows['nama'],
+            'alamat' => $rows['alamat'],
+            'no_telp' => $rows['no_telp'],
+            'email' => $rows['email'],
+        ]);
     }
 }

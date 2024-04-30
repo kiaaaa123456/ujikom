@@ -6,6 +6,7 @@ use App\Exports\StokExport;
 use App\Models\Menu;
 use App\Http\Requests\StoreStokRequest;
 use App\Http\Requests\UpdateStokRequest;
+use App\Imports\StokImport;
 use App\Models\Stok;
 use App\Models\Jenis;
 use Exception;
@@ -65,6 +66,12 @@ class StokController extends Controller
     {
         $date = date('Y-m-d');
         return Excel::download(new StokExport, $date . '_stok.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new StokImport, $request->import);
+        return redirect()->back()->with('success', 'Import data Absensi berhasil');
     }
 
     /**

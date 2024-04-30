@@ -19,10 +19,12 @@ class PelangganExport implements FromCollection, WithHeadings, WithEvents
     {
         return [
             'No.',
-            'Nama',
-            'Alamat',
-            'No. Telp',
-            'Email',
+            'nama',
+            'alamat',
+            'no_telp',
+            'email',
+            'created_at',
+            'update_at'
         ];
     }
 

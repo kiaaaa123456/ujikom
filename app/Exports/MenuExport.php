@@ -19,11 +19,11 @@ class MenuExport implements FromCollection, WithHeadings, WithEvents
     {
         return [
             'No.',
-            'Jenis ID',
-            'Nama Menu',
-            'Harga',
-            'Image',
-            'Deskripsi',
+            'jenis_id',
+            'nama_menu',
+            'harga',
+            'image',
+            'deskripsi',
             'Created_at',
             'Update_at',
         ];

@@ -49,10 +49,10 @@
             </nav>
         </header>
         <div id="main-content">
-            <a href="{{ url('pdfjenis') }}" target="_blank" class="btn btn-danger">
+            <a href="{{ url('pdflaporan') }}" target="_blank" class="btn btn-danger">
                 <i class="bi bi-file-pdf"></i>PDF
             </a>
-            <a href="{{ route('exportjenis') }}" class="btn btn-success">
+            <a href="{{ route('exportlaporan') }}" class="btn btn-success">
                 <i class="bi bi-file-excel"></i>Export
             </a>
             <div class="page-title">
@@ -73,86 +73,34 @@
 
                         </div>
                     </div>
-                    <div class="card-body">
-                        <span style="display: inline-flex; align-items: center;">
-                            <input type="date" class="form-control" id="tanggal_masuk" value=""
-                                placeholder="Tanggal Masuk" name="tanggal_masuk" style="width: 150px;">
-                        </span>
-                        <span style="margin-left: 30px;">s/d</span>
-                        <span style="display: inline-flex; align-items: center;">
-                            <input type="date" class="form-control" id="tanggal_masuk" value=""
-                                placeholder="Tanggal Akhir" name="tanggal_masuk" style="width: 150px; margin-left: 35px;">
-                        </span>
-                        <button type="button" class="btn btn-danger" style="margin-left: 10px;">
-                            <i class="bi bi-search"></i>
-                        </button>
-                        @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
+                    <form action="/laporan" method="POST">
+                        @csrf
+                        <div class="card-body">
+                            <span style="display: inline-flex; align-items: center;">
+                                <input type="date" class="form-control" id="tanggal_awal" value="" name="tanggal_awal"
+                                    style="width: 150px;">
+                            </span>
+                            <span style="margin-left: 30px;">s/d</span>
+                            <span style="display: inline-flex; align-items: center;">
+                                <input type="date" class="form-control" id="tanggal_akhir" value="" name="tanggal_akhir"
+                                    style="width: 150px; margin-left: 35px;">
+                            </span>
+                            <button type="submit" class="btn btn-danger" style="margin-left: 10px;">
+                                <i class="bi bi-search"></i>
+                            </button>
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Id Transaksi</th>
-                                        <th>Id Menu</th>
-                                        <th>Jumlah</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($transaksi as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->id }}</td>
-                                            <td>
-                                                @foreach ($item->detailTransaksi as $detail)
-                                                    <p>Nama:{{ $detail->menu->nama_menu }}</p>
-                                                    <p>Qty:{{ $detail->jumlah }}</p>
-                                                    <p>Subtotal:{{ $detail->subtotal }}</p>
-                                                    <hr>
-                                                @endforeach
-                                            </td>
-                                            <td>{{ $item->total_harga }}</td>
-                                            <td>
-                                                @csrf
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        {{-- <a href="{{ url('pdfjenis') }}" target="_blank" class="btn btn-danger">
-                            <i class="bi bi-file-pdf"></i>PDF
-                        </a>
-                        <a href="{{ route('exportjenis') }}" class="btn btn-success">
-                            <i class="bi bi-file-excel"></i>Export
-                        </a>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formImport">
-                            <i class="bi bi-cloud-upload"></i>Import
-                        </button> --}}
+                    </form>
 
-                        <div class="mt-3">
-                            {{-- @include('jenis.data') --}}
-                        </div>
+                    <div class="mt-3">
+                        @include('laporan.data')
                     </div>
                 </div>
-                {{-- @include('jenis.form') --}}
-            </section>
-        @endsection
+        </div>
+        {{-- @include('jenis.form') --}}
+        </section>
+    @endsection
+    @push('script')
+        <script>
+            $('#tbl-laporan').DataTable()
+        </script>
+    @endpush

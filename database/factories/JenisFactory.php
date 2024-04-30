@@ -17,7 +17,8 @@ class JenisFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama_jenis' => fake()->randomElement(['Makanan', 'Minuman']),
+            'nama_jenis' => $this->faker->randomElement(['Coffee', 'Kopi Baper Espresso', 'Kopi Baper Coldbrew', 'Frappe', 'Milk Series', 'Tea Series', 'Milk Indonesia']),
         ];
     }
+
 }

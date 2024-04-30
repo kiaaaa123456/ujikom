@@ -20,16 +20,22 @@
                             @foreach ($jenis as $j)
                                 <li class="jenis-menu" data-jenis="{{ $j->id }}">
                                     <h3>{{ $j->nama_jenis }}</h3>
-                                    <ul class="menu-item" style="cursor: pointer;">
+                                    <ul class="menu-item" style="cursor: pointer; overflow : auto;">
                                         @foreach ($j->menu as $menu)
-                                            <li style="{{ $menu->stok->first()->jumlah < 1 ? 'pointer-events: none; opacity: .8' : '' }}"
-                                                data-harga="{{ $menu->harga }}"data-id="{{ $menu->id }}"
+                                            @php
+                                                $stokCount = optional($menu->stok)->count() ?? 0;
+                                                $firstStok = $stokCount > 0 ? $menu->stok->first()->jumlah : 0;
+                                            @endphp
+                                            <li style="{{ $firstStok < 1 ? 'pointer-events: none; opacity: .8' : '' }}"
+                                                data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}"
                                                 data-image="{{ $menu->image }}">
                                                 <img width="50" src="{{ asset('images') }}/{{ $menu->image }}"
                                                     alt="">
                                                 <div style="font-family: calibri;">
-                                                    Nama : {{ $menu->nama_menu }}<br>
-                                                    Stok : {{ $menu->stok->jumlah }}<br>
+                                                    Nama : {{ $menu->nama_menu }}
+                                                    <br>
+                                                    Stok : {{ $firstStok }}
+                                                    <br>
                                                     Deskripsi : {{ $menu->deskripsi }}
                                                 </div>
                                             </li>

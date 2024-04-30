@@ -24,6 +24,8 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'index']);
+    // Route::get('/', [HomeController::class, 'chart']);
+    // Route::get('/', [HomeController::class, 'index2']);
     Route::group(['middleware' => ['cekUserLogin:1']], function () {
         Route::resource('/category', CategoryController::class);
         Route::get('pdfcategory', [CategoryController::class, 'categoryPdf'])->name('pdfcategory');
@@ -46,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('pdfmenu', [MenuController::class, 'menuPdf'])->name('pdfmenu');
         Route::post('menu/import', [MenuController::class, 'importData'])->name('import-menu');
         Route::resource('/stok', StokController::class);
+        Route::post('stok/import', [StokController::class, 'importData'])->name('import-stok');
         Route::get('pdfstok', [StokController::class, 'stokPdf'])->name('pdfstok');
         Route::get('exportstok', [StokController::class, 'stokExport'])->name('exportstok');
         Route::get('tentang-aplikasi', [HomeController::class, 'tentangAplikasi']);
@@ -73,6 +76,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => ['cekUserLogin:3']], function () {
         Route::resource('/laporan', DetailTransaksiController::class);
+        Route::get('pdflaporan', [DetailTransaksiController::class, 'laporanPdf'])->name('pdflaporan');
+        Route::get('exportlaporan', [DetailTransaksiController::class, 'laporanExport'])->name('exportlaporan');
+        Route::post('laporan', [DetailTransaksiController::class, 'filter'])->name('laporan');
         // Route::get('nota/{nofaktur}', [TransaksiController::class, 'faktur']);
         // Route::resource('/transaksi', TransaksiController::class);
     });

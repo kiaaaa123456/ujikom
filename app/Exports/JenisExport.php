@@ -19,7 +19,7 @@ class JenisExport implements FromCollection, WithHeadings, WithEvents
     {
         return [
             'No.',
-            'Nama Jenis',
+            'nama_jenis',
             'Created_at',
             'Update_at',
         ];
